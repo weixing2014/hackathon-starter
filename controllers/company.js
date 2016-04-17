@@ -26,8 +26,11 @@ exports.getCompany = function(req, res) {
       var data = response.getBody();
       console.log(data)
       res.render('company', {
-        name: company_matching_email.replace(/['"]+/g, ''),
-        summary: data.demograph_results.business_description.replace(/['"]+/g, ''),
+        name: data.demograph_results.company_matching_email,
+        summary: data.demograph_results.business_description,
+        summaryDetails: data.demograph_results.business_summary_excerpt,
+        addresses: data.demograph_results.company_addresses.split(';'),
+        contacts: data.demograph_results.company_phone_numbers.split(';'),
       });
   });
 

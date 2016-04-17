@@ -1,25 +1,19 @@
 extends layout
 
 block content
-  h1 Citrix Systems, Inc.
+  h1 #{name}
   hr
   .row
     .col-sm-12
       h2
         i.fa.fa-map-marker
         |ADDRESS
-      .col-sm-6
-        p.lead 7638 Hollister Ave, Apt 367
-        p
-      .col-sm-6
-        p.lead 7638 Hollister Ave, Apt 367
-        p
-      .col-sm-6
-        p.lead 7638 Hollister Ave, Apt 367
-        p
-      .col-sm-6
-        p.lead 7638 Hollister Ave, Apt 367
-        p
+      - var n = 0
+      - var length = addresses.length
+      while n < length
+        .col-sm-6
+          p.lead #{addresses[n++]}
+          p 
     .col-sm-12
       h2
         i.fa.fa-users
@@ -45,18 +39,17 @@ block content
       h2
         i.fa.fa-phone
         |CONTACT
-      .col-sm-6
-        p.lead 408-790-8000
-      .col-sm-6
-        p.lead 408-790-8000
-      .col-sm-6
-        p.lead 408-790-8000
-      .col-sm-6  
-        p.lead 408-790-8000
+      - var n = 0
+      - var length = contacts.length
+      while n < length
+        .col-sm-6
+          p.lead #{contacts[n++]}
+          p 
     .col-sm-12
       h2
         i.fa.fa-file-text-o
         |COMPANY SUMMARY
       .col-sm-12
         p.lead #{summary} 
+        p.lead #{summaryDetails}
         p
