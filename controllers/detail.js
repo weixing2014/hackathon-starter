@@ -14,6 +14,7 @@
 //  */
 exports.getDetail = function(req, res) {
   res.render('detail', {
+    display: req.query.display,
     title: 'Detail'
   });
 };
