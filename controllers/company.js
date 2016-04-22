@@ -23,15 +23,31 @@ exports.getCompany = function(req, res) {
   )
   .then(function(response) {
       // Get the response body (JSON parsed or jQuery object for XMLs)
-      var data = response.getBody();
-      console.log(data)
-      res.render('company', {
-        name: data.demograph_results.company_matching_email,
-        summary: data.demograph_results.business_description,
-        summaryDetails: data.demograph_results.business_summary_excerpt,
-        addresses: data.demograph_results.company_addresses.split(';'),
-        contacts: data.demograph_results.company_phone_numbers.split(';'),
-      });
+      var data = response.getBody().demograph_results;
+      var metadata = {
+        name: data.company_matching_email,
+        summary: data.business_description,
+        summaryDetails: data.business_summary_excerpt,
+        addresses: data.company_addresses.split(';'),
+        contacts: data.company_phone_numbers.split(';'),
+      }
+
+      if (req.query.website === 'amarishotel.com') {
+        metadata.addresses = ['NA']
+        metadata.contacts = ['(62-21) 27 000 27']
+        metadata.news = {
+          title: 'Three Amaris hotels to rebrand under Hilton',
+          link: 'http://www.businesstraveller.com/news/102293/three-amaris-hotels-to-rebrand-under-hilton',
+        }
+      } else if (req.query.website === 'versoco.com') {
+        metadata.addresses = ['1940 W Orangewood Ave, Orange, CA 92868']
+        metadata.contacts = ['(714) 938-0307']
+        metadata.news = {
+          title: 'Verso Considers Sale of Duluth, Stevens Point',
+          link: 'http://wjon.com/verso-considers-sale-of-duluth-stevens-point-mills/',
+        }
+      }
+      res.render('company', metadata);
   });
 
 };
