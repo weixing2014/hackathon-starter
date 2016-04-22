@@ -33,7 +33,7 @@ exports.getCompany = function(req, res) {
       }
 
       if (req.query.website === 'amarishotel.com') {
-        metadata.addresses = ['NA']
+        metadata.addresses = ['Cirebon, Indonesia']
         metadata.contacts = ['(62-21) 27 000 27']
         metadata.news = {
           title: 'Three Amaris hotels to rebrand under Hilton',
